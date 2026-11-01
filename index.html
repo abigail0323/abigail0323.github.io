@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cheon Hee Jung Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout idea: a bright, airy blue world of frosted-glass panels, like a well-made proposal deck.
+   Light is a soft white bloom that spreads once on load and returns as thin blue curves between sections. */
+:root{
+  --bg:#F2F5FD;          /* page ground */
+  --bg-2:#E4ECFF;        /* gradient partner */
+  --glass:rgba(255,255,255,.66);
+  --white:#FFFFFF;
+  --ink:#121A33;         /* text */
+  --ink-soft:#526079;    /* secondary text, 6.2:1 on white */
+  --blue:#1D3FE0;        /* primary accent, 7.1:1 on white */
+  --blue-mid:#5B7CFA;
+  --blue-soft:#DDE6FF;
+  --line:rgba(29,63,224,.14);
+  --shadow:0 12px 36px -12px rgba(33,64,190,.18);
+  --font-display:"Poppins","Noto Sans KR",system-ui,sans-serif;
+  --font-body:"Noto Sans KR","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:80px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.75;-webkit-font-smoothing:antialiased;word-break:keep-all}
+img{max-width:100%;display:block}
+h1,h2,h3,h4{text-wrap:balance;margin:0;line-height:1.3}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.num{font-variant-numeric:tabular-nums}
+.blue{color:var(--blue)}
+.glass{background:var(--glass);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.95);border-radius:24px;box-shadow:var(--shadow)}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;border-radius:999px;background:var(--white);border:1px solid var(--line);font-size:13.5px;font-weight:500}
+
+/* background curves: light as thin blue lines */
+.curves{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.curves svg{position:absolute;width:140%;left:-20%;height:100%}
+
+/* ---------- NAV ---------- */
+.nav{position:fixed;inset:0 0 auto 0;z-index:50;background:rgba(242,245,253,.78);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--font-display);font-weight:600;font-size:16px;color:var(--ink)}
+.brand i{width:12px;height:12px;border-radius:50%;background:radial-gradient(circle,#fff 0 30%,var(--blue-mid) 70%);box-shadow:0 0 14px 4px rgba(91,124,250,.45)}
+.menu{display:flex;gap:2px;list-style:none;margin:0;padding:0}
+.menu a{display:block;padding:10px 14px;color:var(--ink-soft);text-decoration:none;font-family:var(--font-display);font-size:13px;font-weight:500;letter-spacing:.06em;border-radius:999px}
+.menu a:hover{color:var(--blue)}
+.menu a.on{color:var(--blue);background:var(--white);box-shadow:0 2px 10px rgba(29,63,224,.10)}
+.burger{display:none;background:var(--white);border:1px solid var(--line);color:var(--ink);width:44px;height:44px;border-radius:12px;cursor:pointer}
+@media (max-width:860px){
+  .burger{display:grid;place-items:center}
+  .menu{position:absolute;top:68px;left:0;right:0;flex-direction:column;background:var(--bg);padding:8px 16px 18px;border-bottom:1px solid var(--line);display:none}
+  .menu.open{display:flex}
+  .menu a{padding:14px 10px;font-size:14px;border-radius:10px}
+}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;padding:108px 0 40px;background:linear-gradient(165deg,#F7F9FF 0%,var(--bg-2) 55%,#EEF3FF 100%)}
+.hero::before{ /* the light spreading */
+  content:"";position:absolute;width:1200px;height:1200px;left:68%;top:38%;transform:translate(-50%,-50%);border-radius:50%;
+  background:radial-gradient(circle,rgba(255,255,255,1) 0%,rgba(255,255,255,.75) 18%,rgba(196,212,255,.45) 38%,transparent 64%);
+  animation:spread 3s cubic-bezier(.2,.7,.2,1) both;pointer-events:none}
+@keyframes spread{from{transform:translate(-50%,-50%) scale(.06);opacity:0}to{transform:translate(-50%,-50%) scale(1);opacity:1}}
+.hero-panel{position:relative;display:grid;grid-template-columns:1.15fr .85fr;gap:32px;padding:56px 56px 48px}
+.hero .tag{font-size:15px;font-weight:700;color:var(--blue)}
+.hero h1{font-family:var(--font-display);font-weight:700;font-size:clamp(40px,5.6vw,72px);line-height:1.08;letter-spacing:-.02em;margin-top:14px;color:var(--ink)}
+.hero h1 span{color:var(--blue)}
+.hero .ko{margin-top:22px;font-size:clamp(24px,3vw,38px);font-weight:800;letter-spacing:-.02em;color:var(--ink)}
+.hero .ko em{font-style:normal;color:var(--blue)}
+.hero .sub{margin-top:10px;font-size:18px;font-weight:500;color:var(--blue-mid)}
+.hero .pill{margin-top:22px;display:inline-block;padding:10px 20px;border-radius:999px;background:var(--white);box-shadow:0 4px 18px rgba(29,63,224,.10);font-weight:500;font-size:15px}
+.hero .who{margin-top:26px;display:flex;flex-wrap:wrap;gap:8px}
+.portrait{position:relative;align-self:center;justify-self:center;width:min(360px,100%)}
+.portrait .frame{border-radius:28px;overflow:hidden;background:#dbe6ff;border:6px solid rgba(255,255,255,.9);box-shadow:0 30px 60px -20px rgba(29,63,224,.35);animation:reveal 2.6s .4s ease-out both}
+.portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:50% 18%}
+.portrait .badge{position:absolute;left:-28px;bottom:36px;padding:14px 18px;border-radius:18px;font-size:13px;line-height:1.45;animation:reveal 2s 1.4s ease-out both}
+.portrait .badge b{display:block;font-family:var(--font-display);font-size:22px;color:var(--blue)}
+@keyframes reveal{from{opacity:0;filter:blur(12px) brightness(1.6);transform:translateY(10px)}to{opacity:1;filter:none;transform:none}}
+.strip{position:relative;margin-top:24px;display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.strip figure{margin:0;padding:8px;border-radius:22px;animation:reveal 2s ease-out both}
+.strip figure:nth-child(1){animation-delay:.9s}.strip figure:nth-child(2){animation-delay:1.15s}.strip figure:nth-child(3){animation-delay:1.4s}
+.strip img{width:100%;aspect-ratio:16/10;object-fit:cover;border-radius:16px}
+.strip figcaption{padding:10px 8px 4px;font-size:14px;font-weight:700;display:flex;justify-content:space-between;gap:8px}
+.strip figcaption span{font-family:var(--font-display);font-size:12px;color:var(--blue);font-weight:600;letter-spacing:.06em}
+@media (max-width:900px){
+  .hero{padding:92px 0 32px}
+  .hero-panel{grid-template-columns:1fr;padding:32px 22px}
+  .portrait{order:-1;width:min(260px,72%)}
+  .portrait .badge{left:auto;right:-18px;bottom:20px}
+  .hero::before{left:50%;top:20%}
+  .strip{grid-template-columns:1fr 1fr}.strip figure:nth-child(3){display:none}
+}
+
+/* ---------- STATS ---------- */
+.stats{padding:28px 0 8px}
+.stats ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.stats li{padding:22px 20px;display:flex;flex-direction:column;gap:6px;border-radius:20px}
+.stats .circle{width:44px;height:44px;border-radius:50%;background:var(--blue-soft);display:grid;place-items:center;color:var(--blue)}
+.stats strong{font-family:var(--font-display);font-weight:700;font-size:clamp(26px,2.6vw,36px);line-height:1.15;color:var(--blue);margin-top:6px}
+.stats strong small{font-family:var(--font-body);font-size:.5em;margin-left:3px;color:var(--ink);font-weight:700}
+.stats p{margin:0;font-size:14px;font-weight:500;line-height:1.5}
+.stats p em{display:block;font-style:normal;font-size:12.5px;color:var(--ink-soft);font-weight:400}
+@media (max-width:1000px){.stats ul{grid-template-columns:repeat(2,1fr)}.stats li:last-child{grid-column:span 2}}
+
+/* ---------- SECTION HEADINGS (deck-style) ---------- */
+section.block{position:relative;padding:96px 0}
+.sec-head{display:grid;grid-template-columns:1fr auto;align-items:end;gap:16px;padding-bottom:14px;position:relative}
+.sec-head::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--line)}
+.sec-head .t{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 14px;border-left:5px solid var(--blue);padding-left:16px}
+.sec-head h2{font-family:var(--font-display);font-weight:700;font-size:clamp(28px,3.4vw,40px);color:var(--blue);letter-spacing:-.01em}
+.sec-head .t span{font-weight:700;font-size:16px}
+.sec-head .k{font-family:var(--font-display);font-size:12px;font-weight:600;color:var(--blue);text-align:right;line-height:1.35;border-right:3px solid var(--blue);padding-right:10px}
+.notch{display:block;width:44px;height:10px;margin:-1px auto 0;color:var(--blue-mid)}
+.lead{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:end;margin:36px 0 40px}
+.lead h3{font-size:clamp(24px,2.6vw,32px);font-weight:800;letter-spacing:-.02em;line-height:1.4}
+.lead h3 em{font-style:normal;color:var(--blue)}
+.lead p{margin:0;text-align:right;color:var(--ink-soft);font-size:15px}
+.lead p b{color:var(--blue)}
+@media (max-width:760px){.lead{grid-template-columns:1fr}.lead p{text-align:left}.sec-head{grid-template-columns:1fr}.sec-head .k{display:none}}
+
+/* ---------- WHO I AM / WHY SL ---------- */
+.who-sec{padding-top:72px}
+.ws{display:grid;grid-template-columns:1fr 1fr;gap:0;padding:0;overflow:hidden}
+.ws > div{padding:36px 40px}
+.ws > div + div{border-left:1px dashed var(--line)}
+.ws .lbl{font-family:var(--font-display);font-size:15px;font-weight:600;color:var(--blue)}
+.ws .lbl b{color:var(--ink)}
+.ws blockquote{margin:16px 0 0;font-size:clamp(19px,2vw,23px);font-weight:700;line-height:1.6;letter-spacing:-.01em}
+.ws blockquote em{font-style:normal;color:var(--blue)}
+.ws p{margin:14px 0 0;color:var(--ink-soft);font-size:15.5px}
+.flow{list-style:none;margin:20px 0 0;padding:0;display:grid;gap:6px}
+.flow li{display:grid;grid-template-columns:34px 1fr;gap:14px;align-items:start}
+.flow .n{width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-size:13px;font-weight:600;margin-top:2px}
+.flow b{display:block;color:var(--blue);font-size:16px}
+.flow span{display:block;color:var(--ink-soft);font-size:14.5px;line-height:1.65}
+.flow .chev{grid-template-columns:34px;justify-items:center;color:var(--blue-mid);line-height:1}
+.ws .close{margin-top:22px;padding:14px 18px;border-radius:14px;background:var(--blue-soft);color:var(--blue);font-weight:700;font-size:15.5px;text-align:center}
+@media (max-width:860px){.ws{grid-template-columns:1fr}.ws > div{padding:28px 22px}.ws > div + div{border-left:0;border-top:1px dashed var(--line)}}
+
+/* ---------- PROFILE ---------- */
+.profile{display:grid;grid-template-columns:300px 1fr;gap:28px;align-items:start}
+.profile .photo{padding:10px;position:sticky;top:96px}
+.profile .photo img{border-radius:16px;aspect-ratio:3/4;object-fit:cover;width:100%}
+.profile .photo p{margin:12px 6px 4px;font-weight:700;font-size:17px}
+.profile .photo p small{display:block;font-family:var(--font-display);font-weight:500;color:var(--blue);font-size:13px}
+.pcol{display:grid;gap:20px}
+.pbox{padding:28px 30px}
+.pbox h3{font-size:17px;font-weight:800;display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.pbox h3 .n{width:26px;height:26px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-size:12px;font-weight:600}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:0 28px;margin:0}
+.facts div{display:grid;grid-template-columns:84px 1fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--line)}
+.facts dt{color:var(--ink-soft);font-size:14px}
+.facts dd{margin:0;font-weight:500}
+.intro-t{font-size:18px;font-weight:800;color:var(--blue);margin:0 0 8px}
+.pbox p{margin:0 0 10px}.pbox p:last-child{margin:0}
+.caps{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.caps div{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.caps h4{font-family:var(--font-display);font-weight:600;font-size:17px;color:var(--blue)}
+.caps p{margin:4px 0 0;color:var(--ink-soft);font-size:14.5px;line-height:1.6}
+@media (max-width:900px){.profile{grid-template-columns:1fr}.profile .photo{position:static;max-width:260px}.facts,.caps{grid-template-columns:1fr}.pbox{padding:22px}}
+
+/* ---------- TIMELINE ---------- */
+.timeline{display:grid;gap:22px}
+.year{display:grid;grid-template-columns:170px 1fr;gap:24px;padding:28px 32px}
+.year > h3{font-family:var(--font-display);font-weight:700;font-size:48px;line-height:1;color:var(--blue)}
+.year > h3 small{display:block;font-family:var(--font-body);font-size:13px;color:var(--ink-soft);margin-top:10px;font-weight:500;line-height:1.5}
+.events{display:grid;gap:0;border-left:2px solid var(--blue-soft)}
+.ev{position:relative;padding:2px 0 22px 26px}
+.ev:last-child{padding-bottom:0}
+.ev::before{content:"";position:absolute;left:-7px;top:9px;width:12px;height:12px;border-radius:50%;background:var(--white);border:3px solid var(--blue)}
+.ev .when{font-family:var(--font-display);font-size:13px;color:var(--blue);font-weight:600}
+.ev h4{font-size:18px;font-weight:800}
+.ev .role{color:var(--ink-soft);font-size:15px}
+.ev ul{margin:10px 0 0;padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px}
+.ev li{font-size:13px;padding:4px 12px;border-radius:999px;background:var(--blue-soft);color:#17308F;font-weight:500}
+@media (max-width:760px){.year{grid-template-columns:1fr;gap:14px;padding:22px}.year > h3{font-size:38px}}
+
+/* ---------- PROJECTS ---------- */
+.projects{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
+.pcard{all:unset;box-sizing:border-box;cursor:pointer;display:flex;flex-direction:column;padding:10px;transition:transform .3s ease,box-shadow .3s ease}
+.pcard:hover{transform:translateY(-4px);box-shadow:0 24px 50px -18px rgba(29,63,224,.32)}
+.pcard:focus-visible{outline:2px solid var(--blue);outline-offset:4px}
+.pcard .pic{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:16px;background:var(--blue-soft)}
+.pcard .pic img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.pcard:hover .pic img{transform:scale(1.04)}
+.pcard .no{position:absolute;left:14px;top:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.92);font-family:var(--font-display);font-size:12px;font-weight:600;color:var(--blue)}
+.pcard .body{padding:20px 18px 16px;display:flex;flex-direction:column;gap:10px;flex:1}
+.pcard .field{font-family:var(--font-display);font-size:12px;font-weight:600;color:var(--blue-mid);letter-spacing:.04em}
+.pcard h3{font-size:21px;font-weight:800;letter-spacing:-.01em}
+.pcard .found{padding:14px 16px;background:var(--white);border:1px solid var(--line);border-radius:14px;font-size:15px;line-height:1.65}
+.pcard .found b{display:block;font-family:var(--font-display);font-size:11.5px;letter-spacing:.12em;color:var(--blue);margin-bottom:2px}
+.pcard .key{display:flex;flex-wrap:wrap;gap:6px;margin-top:auto;padding-top:6px}
+.pcard .key span{font-size:13px;padding:4px 12px;border-radius:999px;background:var(--blue-soft);color:#17308F;font-weight:500}
+.pcard .more{font-family:var(--font-display);font-size:13px;font-weight:600;color:var(--blue)}
+.pic.typo{display:grid;place-items:center;background:radial-gradient(circle at 70% 25%,#fff 0,rgba(255,255,255,.5) 18%,transparent 50%),linear-gradient(150deg,#C9D7FF,#5B7CFA)}
+.pic.typo span.t{font-family:var(--font-display);color:#fff;font-size:clamp(26px,3vw,38px);font-weight:700;text-align:center;line-height:1.2;padding:0 24px;text-shadow:0 4px 20px rgba(29,63,224,.4)}
+@media (max-width:860px){.projects{grid-template-columns:1fr}}
+
+/* ---------- ACHIEVEMENTS ---------- */
+.ach{display:grid;grid-template-columns:1.15fr 1fr;gap:24px;align-items:start}
+.awards{display:grid;gap:14px}
+.award{display:grid;grid-template-columns:96px 1fr;gap:18px;align-items:center;padding:14px;border-radius:20px}
+.award .thumb{all:unset;cursor:zoom-in;display:block;aspect-ratio:3/4;border-radius:12px;overflow:hidden;background:var(--blue-soft)}
+.award .thumb img{width:100%;height:100%;object-fit:cover}
+.award .ph{aspect-ratio:3/4;border-radius:12px;display:grid;place-items:center;background:linear-gradient(150deg,#C9D7FF,#5B7CFA);color:#fff;font-family:var(--font-display);font-weight:700;font-size:18px}
+.award h3{font-size:16.5px;font-weight:800}
+.award p{margin:4px 0 0;color:var(--ink-soft);font-size:14px;line-height:1.6}
+.lists{padding:26px 28px;display:grid;gap:24px}
+.lists h3{font-size:15px;font-weight:800;margin-bottom:8px;color:var(--blue)}
+.lists ul{list-style:none;margin:0;padding:0}
+.lists li{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-weight:500}
+.lists li span{color:var(--blue);font-weight:700;font-size:14px}
+.tools{display:flex;flex-wrap:wrap;gap:8px}
+.minor-h{font-size:17px;font-weight:800;margin:56px 0 16px;display:flex;align-items:center;gap:10px}
+.minor-h::before{content:"";width:4px;height:18px;background:var(--blue);border-radius:2px}
+.extra{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.xcard{display:grid;grid-template-columns:130px 1fr;gap:18px;padding:14px;border-radius:20px;align-items:start}
+.xcard .thumb{all:unset;cursor:zoom-in;display:block;aspect-ratio:1;border-radius:14px;overflow:hidden}
+.xcard .thumb img{width:100%;height:100%;object-fit:cover}
+.xcard h3{font-size:16.5px;font-weight:800}
+.xcard p{margin:6px 0 0;color:var(--ink-soft);font-size:14.5px;line-height:1.65}
+.xcard .when{font-family:var(--font-display);font-size:12px;color:var(--blue);font-weight:600}
+.btn-s{font:inherit;font-size:13.5px;font-weight:500;cursor:pointer;min-height:36px;margin-top:10px;padding:0 16px;border-radius:999px;border:1px solid var(--line);background:var(--white);color:var(--blue)}
+@media (max-width:900px){.ach{grid-template-columns:1fr}.extra{grid-template-columns:1fr}.xcard{grid-template-columns:100px 1fr}}
+
+/* ---------- CONTACT ---------- */
+.contact{position:relative;overflow:hidden;padding:96px 0 48px;background:linear-gradient(160deg,#2547E8,#1530B8 60%,#0F2696)}
+.contact::before{content:"";position:absolute;width:900px;height:900px;right:-260px;top:-380px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.35),transparent 60%)}
+.contact .wrap{position:relative;color:#fff}
+.contact .tag{font-family:var(--font-display);font-weight:600;font-size:14px;color:#C9D7FF}
+.contact h2{font-size:clamp(28px,4vw,46px);font-weight:800;margin-top:12px;line-height:1.35;letter-spacing:-.02em}
+.contact h2 em{font-style:normal;color:#C9D7FF}
+.mail{margin-top:34px;display:flex;flex-wrap:wrap;align-items:center;gap:12px}
+.mail a{font-family:var(--font-display);font-size:clamp(20px,2.4vw,26px);font-weight:500;text-decoration:none;padding:10px 22px;border-radius:999px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.35)}
+.mail a:hover{background:rgba(255,255,255,.22)}
+.btn{font:inherit;font-size:14px;font-weight:500;cursor:pointer;min-height:44px;padding:0 20px;border-radius:999px;border:0;background:#fff;color:var(--blue)}
+.contact .info{margin-top:20px;color:#DCE4FF}
+.foot{margin-top:72px;padding-top:20px;border-top:1px solid rgba(255,255,255,.2);display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;font-size:13px;color:#C9D7FF}
+
+/* ---------- PROJECT DETAIL DIALOG ---------- */
+dialog.detail{width:min(1000px,calc(100% - 24px));max-height:calc(100% - 24px);padding:0;border:0;border-radius:24px;background:var(--bg);color:var(--ink);box-shadow:0 40px 90px rgba(12,24,80,.35)}
+dialog.detail::backdrop{background:rgba(20,32,80,.45);backdrop-filter:blur(6px)}
+.d-hero{position:relative;background:linear-gradient(160deg,#F7F9FF,var(--bg-2));padding:44px 40px 30px;overflow:hidden}
+.d-hero::before{content:"";position:absolute;width:640px;height:640px;right:-200px;top:-320px;border-radius:50%;background:radial-gradient(circle,#fff,transparent 62%)}
+.d-hero > *{position:relative}
+.d-hero .eyebrow{font-family:var(--font-display);font-size:12.5px;font-weight:600;color:var(--blue-mid);letter-spacing:.04em}
+.d-hero h2{font-size:clamp(24px,3vw,32px);font-weight:800;margin-top:8px;letter-spacing:-.02em;border-left:5px solid var(--blue);padding-left:14px}
+.d-hero h2 em{font-style:normal;color:var(--blue)}
+.d-hero p{margin:12px 0 0;color:var(--ink-soft);max-width:46em}
+.d-close{position:absolute;right:16px;top:16px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--white);color:var(--ink);font-size:20px;cursor:pointer;display:grid;place-items:center}
+.d-close:hover{color:var(--blue)}
+.d-nav{display:flex;gap:4px;overflow-x:auto;padding:10px 32px;background:rgba(255,255,255,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:1}
+.d-nav a{flex:none;padding:8px 14px;border-radius:999px;font-family:var(--font-display);font-size:12.5px;font-weight:600;text-decoration:none;color:var(--ink-soft);white-space:nowrap}
+.d-nav a:hover{color:var(--blue);background:var(--blue-soft)}
+.d-body{padding:4px 40px 44px}
+.d-sec{padding-top:34px;scroll-margin-top:64px}
+.d-sec > h3{font-family:var(--font-display);font-size:18px;font-weight:700;color:var(--blue);margin-bottom:14px;display:flex;align-items:center;gap:12px}
+.d-sec > h3::after{content:"";flex:1;height:1px;background:var(--line)}
+.d-sec p{margin:0 0 12px;max-width:48em}
+.d-sec ul.dots{margin:0;padding-left:20px}
+.d-sec ul.dots li{margin:4px 0}
+.roles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;list-style:none;margin:0;padding:0}
+.roles li{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:12px 16px;font-weight:500;font-size:15px;display:flex;align-items:center;gap:10px}
+.roles li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--blue)}
+.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px 1fr;gap:14px;align-items:start;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:14px 18px}
+.steps li::before{content:counter(s);width:32px;height:32px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-family:var(--font-display);font-size:14px;font-weight:600}
+.steps li b{display:block;color:var(--blue)}
+.steps li span{color:var(--ink-soft);font-size:15px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:12px}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px}
+.kpi strong{display:block;font-family:var(--font-display);font-size:26px;font-weight:700;line-height:1.25;color:var(--blue)}
+.kpi span{font-size:13.5px;color:var(--ink-soft);line-height:1.5;display:block;margin-top:4px}
+.tbl{overflow-x:auto;margin-top:14px;border:1px solid var(--line);border-radius:16px;background:var(--white)}
+.tbl table{border-collapse:collapse;width:100%;min-width:560px;font-size:14.5px}
+.tbl th,.tbl td{padding:11px 14px;text-align:left;border-bottom:1px solid var(--line)}
+.tbl th{font-weight:700;color:var(--blue);font-size:13px;background:#F5F8FF}
+.tbl td.r,.tbl th.r{text-align:right;font-variant-numeric:tabular-nums}
+.tbl tr:last-child td{border-bottom:0}
+.pivot{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch;margin-top:14px}
+.pivot div{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:16px 18px;font-size:15px}
+.pivot div b{display:block;margin-bottom:4px}
+.pivot .arrow{background:none;border:0;display:grid;place-items:center;color:var(--blue);padding:0}
+.pivot .lit{background:var(--blue);color:#fff;border-color:var(--blue)}
+.pivot .lit b{color:#fff}
+.learn{background:var(--blue-soft);color:#13246E;border-radius:18px;padding:22px 26px;font-size:16.5px;line-height:1.8;font-weight:500}
+.learn p{max-width:none}
+.learn p:last-child{margin:0}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.split > div{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px 20px}
+.split h4{font-size:15.5px;margin-bottom:8px}
+.split h4 small{display:block;font-family:var(--font-display);font-size:11.5px;letter-spacing:.08em;color:var(--blue);font-weight:600}
+.expo{display:grid;grid-template-columns:230px 1fr;gap:20px;padding:16px;margin-bottom:12px;background:var(--white);border:1px solid var(--line);border-radius:18px}
+.expo .thumb{all:unset;cursor:zoom-in;display:block;aspect-ratio:4/3;border-radius:12px;overflow:hidden}
+.expo .thumb img{width:100%;height:100%;object-fit:cover}
+.expo h4{font-size:18px;font-weight:800}
+.expo h4 small{display:block;font-family:var(--font-display);font-size:12px;color:var(--blue);font-weight:600;margin-top:2px}
+.expo ul{margin:8px 0 0;padding-left:18px;font-size:15px}
+.voice{margin-top:14px;padding:18px 22px;border-radius:16px;background:var(--white);border:1px solid var(--line);font-size:15.5px}
+.voice b{color:var(--blue)}
+.note{font-size:13px;color:var(--ink-soft)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}
+.gallery button{all:unset;cursor:zoom-in;display:block;border-radius:14px;overflow:hidden;background:var(--white);border:1px solid var(--line)}
+.gallery button:focus-visible{outline:2px solid var(--blue);outline-offset:3px}
+.gallery img{width:100%;aspect-ratio:4/3;object-fit:cover;object-position:top}
+.gallery span{display:block;font-size:12.5px;color:var(--ink-soft);padding:8px 10px;line-height:1.4}
+@media (max-width:700px){
+  .d-hero{padding:56px 22px 24px}.d-nav{padding:8px 12px}.d-body{padding:4px 18px 32px}
+  .roles,.split{grid-template-columns:1fr}.pivot{grid-template-columns:1fr}.pivot .arrow{transform:rotate(90deg)}
+  .expo{grid-template-columns:1fr}
+}
+dialog.lightbox{padding:0;border:0;background:transparent;max-width:min(1100px,96vw);max-height:94vh}
+dialog.lightbox::backdrop{background:rgba(12,20,56,.88)}
+dialog.lightbox img{max-width:min(1100px,96vw);max-height:84vh;object-fit:contain;margin:0 auto;border-radius:10px}
+dialog.lightbox p{color:#fff;text-align:center;margin:10px 0 0;font-size:14px}
+dialog.lightbox .d-close{position:fixed;right:18px;top:18px}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" aria-label="주 메뉴">
+  <div class="wrap">
+    <a class="brand" href="#home"><i aria-hidden="true"></i>Cheon Hee Jung</a>
+    <button class="burger" id="burger" aria-label="메뉴 열기" aria-expanded="false" aria-controls="menu">
+      <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M3 6h14M3 10h14M3 14h14"/></svg>
+    </button>
+    <ul class="menu" id="menu">
+      <li><a href="#home">HOME</a></li>
+      <li><a href="#profile">PROFILE</a></li>
+      <li><a href="#experience">EXPERIENCE</a></li>
+      <li><a href="#projects">PROJECTS</a></li>
+      <li><a href="#achievements">ACHIEVEMENTS</a></li>
+      <li><a href="#contact">CONTACT</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main>
+<!-- ================= HOME ================= -->
+<header class="hero" id="home">
+  <div class="curves" aria-hidden="true">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="none" fill="none">
+      <path d="M0 640 C 320 520, 560 820, 900 640 S 1400 380, 1600 470" stroke="#5B7CFA" stroke-opacity=".35" stroke-width="2"/>
+      <path d="M0 700 C 380 600, 600 860, 960 700 S 1380 470, 1600 540" stroke="#1D3FE0" stroke-opacity=".18" stroke-width="1.5"/>
+    </svg>
+  </div>
+  <div class="wrap">
+    <div class="hero-panel glass">
+      <div>
+        <div class="tag">Global Sales Portfolio · 천희정</div>
+        <h1>Beyond Lighting.<br><span>Showing Life.</span></h1>
+        <p class="ko"><em>빛</em>의 다음 쓰임을 <em>발견</em>하다.</p>
+        <p class="sub">제품의 기능을 넘어, 사람과 시장이 필요로 하는 새로운 가치를 발견합니다.</p>
+        <div class="pill">제품을 넘어, 기업의 가치를 전달하는 영업인</div>
+        <div class="who"><span class="chip">충북대학교 국제경영학과</span><span class="chip">TOEIC 905</span><span class="chip">OPIc IH</span><span class="chip">미국 테네시 4년 거주</span></div>
+      </div>
+      <div class="portrait">
+        <div class="frame"><img src="img/profile.jpg" alt="천희정 프로필 사진"></div>
+        <div class="badge glass"><b class="num">3개국</b>국제 전시회 현장 경험</div>
+      </div>
+    </div>
+    <div class="strip" aria-label="해외 전시회 활동 사진">
+      <figure class="glass"><img src="img/switch-booth.jpg" alt="SWITCH 2025 싱가포르 부스에서 브로슈어를 든 모습"><figcaption>SWITCH 2025<span>SINGAPORE</span></figcaption></figure>
+      <figure class="glass"><img src="img/canton.jpg" alt="광저우 캔톤페어에서 바이어와 상담하는 모습" style="object-position:30% 50%"><figcaption>Canton Fair<span>GUANGZHOU</span></figcaption></figure>
+      <figure class="glass"><img src="img/kmed.jpg" alt="하노이 K Med Expo에서 의료기기를 설명하는 모습" style="object-position:55% 60%"><figcaption>K Med Expo<span>HANOI</span></figcaption></figure>
+    </div>
+  </div>
+</header>
+
+<section class="stats" aria-label="주요 성과">
+  <div class="wrap">
+    <ul>
+      <li class="glass"><div class="circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg></div><strong class="num"><span data-count="3">3</span><small>개국</small></strong><p>Shopee 해외 판매 운영<em>베트남 · 태국 · 싱가포르</em></p></li>
+      <li class="glass"><div class="circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M10 19V5M16 19v-7M22 19H2"/></svg></div><strong class="num">약 <span data-count="700">700</span><small>만 원</small></strong><p>Shopee 누적 매출<em>2025.03–11 누적</em></p></li>
+      <li class="glass"><div class="circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20c1-4 4-6 8-6s7 2 8 6"/><circle cx="12" cy="8" r="4"/></svg></div><strong class="num"><span data-count="32">32</span><small>개사</small></strong><p>1:1 해외 바이어 발굴 상담<em>수출지원센터</em></p></li>
+      <li class="glass"><div class="circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg></div><strong class="num"><span data-count="1560">1,560</span><small>개사</small></strong><p>잠재 해외 바이어 발굴<em>수출지원센터</em></p></li>
+      <li class="glass"><div class="circle" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></div><strong class="num"><span data-count="311">311</span><small>명</small></strong><p>해외 바이어 담당자 정보 확보<em>수출지원센터</em></p></li>
+    </ul>
+  </div>
+</section>
+
+<section class="block who-sec" aria-labelledby="who-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t"><h2 id="who-h">Who I Am</h2><span>저는 이런 사람입니다</span></div>
+      <div class="k">Keyword<br>Value Finder</div>
+    </div>
+    <svg class="notch" viewBox="0 0 44 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 1 C 14 1, 16 9, 22 9 S 30 1, 44 1"/></svg>
+    <div class="lead">
+      <h3>제품이 무엇인지 설명하는 데서 멈추지 않고,<br><em>사람과 시장에 줄 가치</em>를 발견합니다.</h3>
+      <p>낯선 제품과 시장 앞에서도 <b>고객이 선택할 이유</b>를 찾아내는 것,<br>그것이 제가 생각하는 영업의 시작입니다.</p>
+    </div>
+    <div class="ws glass">
+      <div>
+        <div class="lbl">PROBLEM <b>| 영업은 무엇에서 시작하는가</b></div>
+        <blockquote>영업은 제품의 특성을 이해하는 데서 시작해, <em>고객이 중요하게 여기는 가치를 전달하는 일</em>입니다.</blockquote>
+        <p>GTEP과 해외 전시회에서 헤어볼륨핀, 주방용품, 의료기기처럼 서로 다른 제품을 소개하고 판매하며 이것을 배웠습니다. 낯선 시장을 개척하려면 고객이 왜 선택하고, 왜 망설이는지를 먼저 살펴야 했습니다.</p>
+        <p>수출지원센터에서는 32개 중소기업과 1:1로 바이어 발굴 상담을 하며, 기업마다 다른 제품의 강점을 해외 고객의 수요와 연결하는 방법을 익혔습니다.</p>
+      </div>
+      <div>
+        <div class="lbl">WHY SL <b>| 빛의 다음 쓰임을 찾아가는 인재</b></div>
+        <ol class="flow">
+          <li><div class="n">1</div><div><b>현장에서 본 것</b><span>SWITCH 2025에서 가구 렌털 기업이 친환경에 머물지 않고, AI 카메라로 고객사에 마케팅 KPI 데이터를 제공하며 차별화하는 모습을 봤습니다.</span></div></li>
+          <li class="chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4l5 4 5-4M3 9l5 4 5-4"/></svg></li>
+          <li><div class="n">2</div><div><b>SL에서 읽은 것</b><span>자전거용 다이나모 램프에서 자동차 조명, 지능형 조명으로 발전해 온 SL. 2026년 르노코리아 올해의 협력사 기술혁신 부문 선정 소식에서, 기술을 고객의 신뢰로 연결하는 영업에 매력을 느꼈습니다.</span></div></li>
+          <li class="chev" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 4l5 4 5-4M3 9l5 4 5-4"/></svg></li>
+          <li><div class="n">3</div><div><b>제가 기여할 것</b><span>유럽 완성차 고객의 요구를 정확히 읽고 개발·품질·생산 부서와 협력해, 신규 수주부터 수주 이후의 수익성과 고객 신뢰까지 책임지겠습니다.</span></div></li>
+        </ol>
+        <div class="close">자전거의 빛을 자동차의 빛으로 발전시킨 SL에서,<br>저 역시 빛의 다음 쓰임을 찾아가겠습니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROFILE ================= -->
+<section class="block" id="profile" aria-labelledby="profile-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t"><h2 id="profile-h">Profile</h2><span>프로필</span></div>
+      <div class="k">Section<br>02 page</div>
+    </div>
+    <svg class="notch" viewBox="0 0 44 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 1 C 14 1, 16 9, 22 9 S 30 1, 44 1"/></svg>
+    <div class="lead">
+      <h3>새로운 시장에서도 <em>가능성을 발견</em>하고,<br>실제 기회로 연결합니다.</h3>
+      <p>해외 온라인 판매 · 글로벌 전시회 · 수출기업 지원<br><b>세 현장</b>에서 제품과 시장을 배웠습니다.</p>
+    </div>
+    <div class="profile">
+      <div class="photo glass"><img src="img/profile.jpg" alt="천희정 프로필 사진"><p>천희정<small>Cheon Hee Jung</small></p></div>
+      <div class="pcol">
+        <div class="pbox glass">
+          <h3><span class="n">1</span>기본 정보</h3>
+          <dl class="facts">
+            <div><dt>학교</dt><dd>충북대학교</dd></div>
+            <div><dt>전공</dt><dd>국제경영학과</dd></div>
+            <div><dt>학점</dt><dd class="num">3.78 / 4.5</dd></div>
+            <div><dt>어학</dt><dd>TOEIC 905 · OPIc IH</dd></div>
+            <div style="grid-column:1/-1"><dt>관심 직무</dt><dd>해외영업, 글로벌 비즈니스, 국제 마케팅, 수출지원</dd></div>
+          </dl>
+        </div>
+        <div class="pbox glass">
+          <h3><span class="n">2</span>소개</h3>
+          <p class="intro-t">제품을 넘어, 기업의 가치를 전달하는 영업인</p>
+          <p>저는 낯선 제품과 시장 앞에서도 고객이 선택할 이유를 찾아내는 사람입니다. 해외 온라인 판매부터 글로벌 전시회, 수출기업 지원까지 다양한 현장에서 직접 경험하며 제품과 시장을 이해하는 능력을 길렀습니다.</p>
+          <p>서로 다른 산업과 국가에서 배운 경험을 연결하며, 고객에게 새로운 가치를 전달하는 글로벌 비즈니스 전문가로 성장하고 싶습니다.</p>
+        </div>
+        <div class="pbox glass">
+          <h3><span class="n">3</span>글로벌 경험</h3>
+          <p><b>미국 테네시주에서 약 4년간 거주하며 현지 정규학교에 재학했습니다.</b></p>
+          <p>언어와 문화 차이에 적응하며 다양한 배경의 사람들과 자연스럽게 소통하는 능력을 길렀고, 이를 바탕으로 국제 전시회에서 해외 바이어에게 직접 제품과 서비스를 설명하고 상담했습니다.</p>
+        </div>
+        <div class="pbox glass">
+          <h3><span class="n">4</span>핵심 역량</h3>
+          <div class="caps">
+            <div><h4>Market Insight</h4><p>해외시장 조사, 경쟁사 분석, 고객 수요 파악, 신규 바이어 발굴</p></div>
+            <div><h4>Global Communication</h4><p>영어 바이어 상담, 해외 전시회, 문화적 이해, 팀 협업</p></div>
+            <div><h4>Sales &amp; Marketing</h4><p>해외 온라인 판매, 검색광고, 판매 전략 개선, 마케팅 콘텐츠 기획</p></div>
+            <div><h4>Data &amp; AI</h4><p>Excel, 무역 데이터 분석, 바이어 DB, ChatGPT · Claude 활용</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section class="block" id="experience" aria-labelledby="exp-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t"><h2 id="exp-h">Experience</h2><span>활동 타임라인</span></div>
+      <div class="k">Section<br>03 page</div>
+    </div>
+    <svg class="notch" viewBox="0 0 44 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 1 C 14 1, 16 9, 22 9 S 30 1, 44 1"/></svg>
+    <div class="lead">
+      <h3>판매 현장에서 <em>수출 지원</em>까지,<br>시야를 넓혀 온 시간</h3>
+      <p>확인된 기간만 표기했습니다.</p>
+    </div>
+    <div class="timeline">
+      <div class="year glass">
+        <h3 class="num">2026</h3>
+        <div class="events">
+          <div class="ev">
+            <div class="when num">2026.07 – 2026.12</div>
+            <h4>대전·세종지방중소벤처기업청 수출지원센터</h4>
+            <div class="role">청년인턴</div>
+            <ul><li>수출통계 분석</li><li>기업별 해외 바이어 발굴</li><li>글로벌 진출 전략 프로그램 운영 지원</li><li>수출지원 안내자료 기획</li><li>무역 데이터 · Excel DB 구축</li></ul>
+          </div>
+          <div class="ev">
+            <div class="when num">2026</div>
+            <h4>KOTRA AICE 1기</h4>
+            <div class="role">DRY-Q 해외 B2B 마케팅 · MVP 선정</div>
+            <ul><li>해외시장 조사 · 바이어 발굴</li><li>영문 제안 · 잠재 바이어 접촉</li><li>디지털 마케팅 계획안</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="year glass">
+        <h3 class="num">2025<small>GTEP 19기<br>2025.03 – 2026.03</small></h3>
+        <div class="events">
+          <div class="ev">
+            <div class="when num">2025.03 – 2026.03</div>
+            <h4>GTEP 19기 · 충북대학교</h4>
+            <div class="role">지역특화 청년무역전문가 양성사업</div>
+            <ul><li>동남아 해외 온라인 판매</li><li>Shopee 운영 · 디지털 마케팅</li><li>해외 전시회 참가</li><li>영어 바이어 상담</li><li>마케팅 · 기획</li></ul>
+          </div>
+          <div class="ev">
+            <div class="when">2025 · Guangzhou, China</div>
+            <h4>Canton Fair</h4>
+            <ul><li>주방용품 해외 판매 · 홍보</li><li>바이어 상담 21건</li><li>준비 물량 현장 완판</li></ul>
+          </div>
+          <div class="ev">
+            <div class="when">2025 · Hanoi, Vietnam</div>
+            <h4>K Med Expo &amp; Hanoi Int'l Meditech Show</h4>
+            <ul><li>의료기기 제품 설명</li><li>기술 질문 응대 지원</li><li>바이어 상담 20건 이상</li></ul>
+          </div>
+          <div class="ev">
+            <div class="when num">2025.10.29 – 10.31 · Singapore</div>
+            <h4>SWITCH 2025</h4>
+            <ul><li>K-STARTUP 통합관 대학생 서포터즈</li><li>기업3팀 팀장</li><li>우수 대학생 서포터즈 선정</li></ul>
+          </div>
+          <div class="ev">
+            <div class="when">2025</div>
+            <h4>충북대학교 캡스톤디자인</h4>
+            <ul><li>청원생명쇼핑몰 경쟁력 강화 전략 제안</li><li>경진대회 우수상</li></ul>
+          </div>
+          <div class="ev">
+            <div class="when num">2025 · 2025.12 수료</div>
+            <h4>하이트진로 대학생 서포터즈 (청주지점)</h4>
+            <ul><li>브랜드 홍보 콘텐츠</li><li>서포터즈 활동</li></ul>
+          </div>
+        </div>
+      </div>
+      <div class="year glass">
+        <h3 style="font-size:30px">Other<small>기간 미표기</small></h3>
+        <div class="events">
+          <div class="ev">
+            <h4>충북대학교 국제교류본부 근로</h4>
+            <ul><li>국제학생 관련 행사 지원</li><li>행정 지원</li></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section class="block" id="projects" aria-labelledby="proj-h">
+  <div class="curves" aria-hidden="true" style="opacity:.7">
+    <svg viewBox="0 0 1600 900" preserveAspectRatio="none" fill="none"><path d="M0 120 C 400 40, 700 240, 1000 120 S 1450 40, 1600 90" stroke="#5B7CFA" stroke-opacity=".3" stroke-width="2"/></svg>
+  </div>
+  <div class="wrap" style="position:relative">
+    <div class="sec-head">
+      <div class="t"><h2 id="proj-h">Projects</h2><span>핵심 프로젝트</span></div>
+      <div class="k">Section<br>04 page</div>
+    </div>
+    <svg class="notch" viewBox="0 0 44 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 1 C 14 1, 16 9, 22 9 S 30 1, 44 1"/></svg>
+    <div class="lead">
+      <h3>경험마다 <em>발견한 가능성</em></h3>
+      <p>무엇을 했는지와 함께, 그 과정에서 <b>새롭게 발견한 점</b>을 담았습니다.<br>카드를 누르면 상세 내용을 볼 수 있습니다.</p>
+    </div>
+    <div class="projects">
+      <button class="pcard glass" data-open="project-01" aria-haspopup="dialog">
+        <div class="pic"><img src="img/shopee-live.jpg" alt="" style="object-position:50% 100%"><span class="no">PROJECT 01</span></div>
+        <div class="body">
+          <div class="field">Global E-commerce · International Marketing</div>
+          <h3>동남아 온라인 시장 개척 · GTEP</h3>
+          <div class="found"><b>DISCOVERY</b>같은 헤어볼륨핀도 나라마다 다른 단어로 검색되고, 고객이 망설이는 이유도 달랐습니다.</div>
+          <div class="key"><span>3개국 운영</span><span>누적 매출 약 700만 원</span><span>Amazon 확장</span></div>
+          <span class="more">자세히 보기 →</span>
+        </div>
+      </button>
+      <button class="pcard glass" data-open="project-02" aria-haspopup="dialog">
+        <div class="pic"><img src="img/export-center.jpg" alt="" style="object-position:50% 45%"><span class="no">PROJECT 02</span></div>
+        <div class="body">
+          <div class="field">Export Consulting · Buyer Research</div>
+          <h3>대전·세종 글로벌 진출 전략 프로그램</h3>
+          <div class="found"><b>DISCOVERY</b>획일적인 검색 대신 거래 이력과 유통 구조를 읽으면, 그 기업의 강점에 맞는 바이어가 보였습니다.</div>
+          <div class="key"><span>32개사 상담</span><span>1,560개사 발굴</span><span>담당자 311명</span></div>
+          <span class="more">자세히 보기 →</span>
+        </div>
+      </button>
+      <button class="pcard glass" data-open="project-03" aria-haspopup="dialog">
+        <div class="pic"><img src="img/switch-booth.jpg" alt="" style="object-position:50% 40%"><span class="no">PROJECT 03</span></div>
+        <div class="body">
+          <div class="field">Global Trade Exhibitions</div>
+          <h3>광저우 · 하노이 · 싱가포르 전시회</h3>
+          <div class="found"><b>DISCOVERY</b>보편화되는 가치를 따르는 데서 끝나지 않고, 고객에게 새로운 효용을 더해야 사업이 계속 성장합니다.</div>
+          <div class="key"><span>Canton Fair</span><span>K Med Expo</span><span>SWITCH 2025</span></div>
+          <span class="more">자세히 보기 →</span>
+        </div>
+      </button>
+      <button class="pcard glass" data-open="project-04" aria-haspopup="dialog">
+        <div class="pic"><img src="img/dryq-cover.jpg" alt="" style="object-position:50% 80%"><span class="no">PROJECT 04</span></div>
+        <div class="body">
+          <div class="field">B2B Marketing · Global Buyer Development</div>
+          <h3>KOTRA AICE · DRY-Q</h3>
+          <div class="found"><b>DISCOVERY</b>땀 흡수 패드라는 작은 소모품도, 사용 장면을 보여 주면 해외 B2B 바이어가 반응하는 제안이 됩니다.</div>
+          <div class="key"><span>바이어 약 70개사 접촉</span><span>샘플 요청 1건</span><span>MVP</span></div>
+          <span class="more">자세히 보기 →</span>
+        </div>
+      </button>
+      <button class="pcard glass" data-open="project-05" aria-haspopup="dialog">
+        <div class="pic"><img src="img/capstone-poster.jpg" alt="" style="object-position:50% 0%"><span class="no">PROJECT 05</span></div>
+        <div class="body">
+          <div class="field">Business Strategy · Marketing</div>
+          <h3>청원생명쇼핑몰 경쟁력 강화 전략</h3>
+          <div class="found"><b>DISCOVERY</b>지역 농산물 쇼핑몰의 강점은 공공 브랜드의 신뢰였고, 부족한 것은 그 신뢰를 전하는 디지털 접점이었습니다.</div>
+          <div class="key"><span>소비자 53명 설문</span><span>캡스톤디자인 우수상</span></div>
+          <span class="more">자세히 보기 →</span>
+        </div>
+      </button>
+      <button class="pcard glass" data-open="project-06" aria-haspopup="dialog">
+        <div class="pic typo"><span class="t">AI for<br>Export Marketing</span><span class="no">PROJECT 06</span></div>
+        <div class="body">
+          <div class="field">AI · Marketing · Process Design</div>
+          <h3>AI 활용 수출 마케팅 콘텐츠 기획</h3>
+          <div class="found"><b>DISCOVERY</b>기업별 정보를 정리해 AI에 맡기면, 반복 작업은 줄고 기업마다 다른 메시지를 만드는 데 더 집중할 수 있습니다.</div>
+          <div class="key"><span>ChatGPT</span><span>Claude</span><span>수출바우처 콘텐츠</span></div>
+          <span class="more">자세히 보기 →</span>
+        </div>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= ACHIEVEMENTS ================= -->
+<section class="block" id="achievements" aria-labelledby="ach-h">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="t"><h2 id="ach-h">Achievements</h2><span>수상 · 자격 · 도구</span></div>
+      <div class="k">Section<br>05 page</div>
+    </div>
+    <svg class="notch" viewBox="0 0 44 10" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M0 1 C 14 1, 16 9, 22 9 S 30 1, 44 1"/></svg>
+    <div class="ach" style="margin-top:36px">
+      <div class="awards">
+        <div class="award glass">
+          <button class="thumb" data-zoom="img/switch-award.jpg" data-cap="SWITCH 2025 우수 대학생 서포터즈 상장" aria-label="SWITCH 2025 상장 크게 보기"><img src="img/switch-award.jpg" alt=""></button>
+          <div><h3>SWITCH 2025 우수 대학생 서포터즈</h3><p>창업진흥원장상 · 2025.12.01<br>창업기업의 해외시장 진출 지원에 우수한 역할을 수행</p></div>
+        </div>
+        <div class="award glass">
+          <button class="thumb" data-zoom="img/capstone-award.jpg" data-cap="2025 경영대학 캡스톤디자인 경진대회 우수상" aria-label="캡스톤디자인 상장 크게 보기"><img src="img/capstone-award.jpg" alt="" style="object-position:60% 60%"></button>
+          <div><h3>충북대학교 캡스톤디자인 우수상</h3><p>2025 경영대학 캡스톤디자인 경진대회 · 2025.11.27<br>청원생명쇼핑몰 경쟁력 강화 전략 제안</p></div>
+        </div>
+        <div class="award glass">
+          <div class="ph" aria-hidden="true">MVP</div>
+          <div><h3>KOTRA AICE 1기 MVP 선정</h3><p>DRY-Q 디지털 마케팅 계획안 · 6인 팀 프로젝트</p></div>
+        </div>
+      </div>
+      <div class="lists glass">
+        <div><h3>취득 자격증</h3><ul><li>국제무역사 <span>1급</span></li><li>무역영어 <span>1급</span></li><li>유통관리사 <span>2급</span></li><li>컴퓨터활용능력 <span>2급</span></li></ul></div>
+        <div><h3>어학</h3><ul><li>TOEIC <span class="num">905</span></li><li>OPIc <span>IH</span></li></ul></div>
+        <div><h3>업무 활용 도구</h3><div class="tools"><span class="chip">Microsoft Excel</span><span class="chip">Shopee Seller Centre</span><span class="chip">Apollo.io</span><span class="chip">RocketReach</span><span class="chip">Abrams Wiki</span><span class="chip">ChatGPT</span><span class="chip">Claude</span></div></div>
+      </div>
+    </div>
+
+    <h3 class="minor-h">Additional Experience</h3>
+    <div class="extra">
+      <div class="xcard glass">
+        <button class="thumb" data-zoom="img/hite-toad.jpg" data-cap="하이트진로 서포터즈 활동 중 참여한 두꺼비 스타일링 콘테스트 작품" aria-label="하이트진로 활동 사진 크게 보기"><img src="img/hite-toad.jpg" alt=""></button>
+        <div>
+          <div class="when num">2025.12 수료</div>
+          <h3>하이트진로 대학생 서포터즈 · 청주지점</h3>
+          <p>브랜드 관련 홍보 콘텐츠를 만들고 서포터즈 활동에 참여했습니다. 두꺼비 스타일링 콘테스트에는 직접 꾸민 작품으로 참여했습니다.</p>
+          <button class="btn-s" data-zoom="img/hite-cert.jpg" data-cap="하이트진로 대학생 서포터즈 수료증">수료증 보기</button>
+        </div>
+      </div>
+      <div class="xcard glass">
+        <button class="thumb" data-zoom="img/intl-office.jpg" data-cap="2026학년도 1학기 국제학부 신입생 오리엔테이션 진행 지원" aria-label="국제교류본부 활동 사진 크게 보기"><img src="img/intl-office.jpg" alt="" style="object-position:50% 40%"></button>
+        <div>
+          <div class="when">국제교류본부</div>
+          <h3>충북대학교 국제교류본부 근로</h3>
+          <p>국제학생 관련 행사와 행정을 지원했습니다. 국제학부 신입생 오리엔테이션에서는 한·영 진행 대본을 바탕으로 행사 운영을 도왔습니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="contact" id="contact" aria-labelledby="contact-h">
+  <div class="wrap">
+    <div class="tag">Contact</div>
+    <h2 id="contact-h">빛의 다음 쓰임을 찾아가는 일,<br><em>함께 이야기하고 싶습니다.</em></h2>
+    <div class="mail">
+      <a href="mailto:lovehjcheon@naver.com">lovehjcheon@naver.com</a>
+      <button class="btn" id="copyMail" type="button">이메일 주소 복사</button>
+    </div>
+    <p class="info">천희정 · 충북대학교 국제경영학과</p>
+    <div class="foot">
+      <span>© 2026 Cheon Hee Jung</span>
+      <span>개인 포트폴리오이며, 특정 기업의 공식 웹사이트가 아닙니다.</span>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- ================= PROJECT DETAILS ================= -->
+<dialog class="detail" id="project-01" aria-labelledby="p1-t">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <div class="d-hero">
+    <div class="eyebrow">PROJECT 01 · Global E-commerce / International Marketing</div>
+    <h2 id="p1-t">동남아 온라인 시장 개척 · <em>GTEP 19기</em></h2>
+    <p>국내 중소기업의 헤어볼륨핀(MINK-I)을 베트남 · 태국 · 싱가포르 Shopee에서 판매한 프로젝트입니다.</p>
+  </div>
+  <nav class="d-nav" aria-label="상세 목차"><a href="#p1-ov">Overview</a><a href="#p1-role">My Role</a><a href="#p1-pr">Process</a><a href="#p1-rs">Results</a><a href="#p1-kl">Key Learnings</a><a href="#p1-gl">Gallery</a></nav>
+  <div class="d-body">
+    <div class="d-sec" id="p1-ov"><h3>Project Overview</h3>
+      <p>해외 인지도가 낮은 국내 헤어 액세서리 브랜드를 동남아 3개국 Shopee에서 판매했습니다. 2025년 3월부터 11월까지 국가별 검색어와 고객 반응을 분석해 광고와 프로모션을 조정했고, 낮은 인지도와 매출 하락 속에서도 판매 방식을 재정비했습니다.</p>
+    </div>
+    <div class="d-sec" id="p1-role"><h3>My Role</h3>
+      <ul class="roles"><li>Shopee 3개국 운영</li><li>현지 검색 키워드 · 고객 반응 조사</li><li>검색광고 · 프로모션 운영</li><li>Shopee Live 홍보</li><li>제품 상세페이지 개선</li><li>매출 · 고객 리뷰 분석</li></ul>
+    </div>
+    <div class="d-sec" id="p1-pr"><h3>Process</h3>
+      <ol class="steps">
+        <li><div><b>국가별 키워드 맵 작성</b><span>hair volume, hair clip 같은 검색어를 베트남어 · 태국어 · 영어로 대응시키고, 시장마다 반응이 높은 단어를 표시했습니다.</span></div></li>
+        <li><div><b>데이터 기반 검색광고 운영</b><span>초기에는 AI 추천 키워드로 노출을 넓히고, 이후 전환율이 높은 검색어를 중심으로 예산을 다시 배분했습니다.</span></div></li>
+        <li><div><b>월간 캠페인 참여</b><span>7.7 같은 Shopee 월간 프로모션에 맞춰 5–10% 할인 바우처, 무료배송 쿠폰, 타임딜 한정 쿠폰을 운영했습니다.</span></div></li>
+        <li><div><b>Shopee Live 홍보물 제작</b><span>7월 28일 라이브 방송을 알리는 홍보 포스터를 제작했습니다.</span></div></li>
+        <li><div><b>리뷰 분석과 상세페이지 개선</b><span>리뷰와 판매 실적을 검토해 옵션 혼선이 생기는 문제를 발견하고, 상세페이지를 직접 개선했습니다.</span></div></li>
+      </ol>
+    </div>
+    <div class="d-sec" id="p1-rs"><h3>Results</h3>
+      <div class="kpis">
+        <div class="kpi"><strong>약 700만 원</strong><span>Shopee 누적 매출 (2025.03–11)</span></div>
+        <div class="kpi"><strong>29% ↓</strong><span>검색광고 클릭당 비용</span></div>
+        <div class="kpi"><strong>1.8배 ↑</strong><span>브랜드 검색량</span></div>
+        <div class="kpi"><strong class="num">133,400</strong><span>광고 노출 · 클릭 2,323회 · CTR 1.74%</span></div>
+      </div>
+      <div class="tbl"><table>
+        <caption class="note" style="caption-side:bottom;text-align:left;padding:10px 14px">검색광고 기간 국가별 성과. 광고비 합계 약 76.8만 원, 광고 경유 매출 약 124만 원 (ROAS 1.37)</caption>
+        <thead><tr><th>국가</th><th class="r">광고비</th><th class="r">노출</th><th class="r">CTR</th><th class="r">판매량</th><th class="r">ROAS</th><th>판단</th></tr></thead>
+        <tbody>
+          <tr><td>태국</td><td class="r">약 46만 원</td><td class="r">7.7만</td><td class="r">1.6%</td><td class="r">25건</td><td class="r">1.83</td><td>투자 대비 효율 가장 우수</td></tr>
+          <tr><td>베트남</td><td class="r">약 6만 원</td><td class="r">3.1만</td><td class="r">1.8%</td><td class="r">5건</td><td class="r">1.37</td><td>전환율 개선 필요</td></tr>
+          <tr><td>싱가포르</td><td class="r">약 25만 원</td><td class="r">2.4만</td><td class="r">2.1%</td><td class="r">11건</td><td class="r">1.27</td><td>광고비 부담 큼</td></tr>
+        </tbody>
+      </table></div>
+      <h4 style="margin:26px 0 0;font-size:16px;font-weight:800">한계에서 발견한 다음 시장</h4>
+      <div class="pivot">
+        <div><b>발견한 한계</b>광고비 부담으로 8월 광고를 중단했고, 매출이 라이브 커머스와 캠페인에 크게 흔들렸습니다. 동남아에서는 저가 카피 제품이 많아 가격 경쟁이 어려웠습니다.</div>
+        <div class="arrow" aria-hidden="true"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></div>
+        <div class="lit"><b>Amazon으로 재타겟팅</b>소득 수준이 높은 국가 위주로 Amazon에 입점하고 캠페인을 진행해 <span class="num">USD 575</span>(약 83만 원)의 매출을 만들었습니다.</div>
+      </div>
+    </div>
+    <div class="d-sec" id="p1-kl"><h3>Key Learnings</h3>
+      <div class="learn"><p>낯선 시장을 개척하려면 고객이 왜 선택하고, 왜 망설이는지를 먼저 살펴야 한다는 것을 배웠습니다. 같은 제품도 어떤 시장에서 어떤 말로 소개하느냐에 따라 전혀 다른 가치를 가집니다.</p></div>
+    </div>
+    <div class="d-sec" id="p1-gl"><h3>Gallery</h3>
+      <div class="gallery">
+        <button data-zoom="img/shopee-live.jpg" data-cap="Shopee Live 홍보 포스터 (직접 제작)"><img src="img/shopee-live.jpg" alt=""><span>Shopee Live 홍보 포스터</span></button>
+        <button data-zoom="img/shopee-ads.jpg" data-cap="국가별 키워드 맵과 검색광고 · 캠페인 전략"><img src="img/shopee-ads.jpg" alt=""><span>키워드 맵 · 광고 전략</span></button>
+        <button data-zoom="img/shopee-results.jpg" data-cap="국가별 광고 성과 분석"><img src="img/shopee-results.jpg" alt=""><span>국가별 성과 분석</span></button>
+        <button data-zoom="img/shopee-amazon.jpg" data-cap="한계 분석과 Amazon 확장"><img src="img/shopee-amazon.jpg" alt=""><span>한계 분석 · Amazon 확장</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="detail" id="project-02" aria-labelledby="p2-t">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <div class="d-hero">
+    <div class="eyebrow">PROJECT 02 · Export Consulting / Buyer Research</div>
+    <h2 id="p2-t">대전·세종 <em>글로벌 진출 전략 프로그램</em></h2>
+    <p>대전·세종지방중소벤처기업청 수출지원센터 청년인턴으로, 지역 중소기업의 해외시장 진출을 위한 맞춤형 바이어 발굴을 지원했습니다.</p>
+  </div>
+  <nav class="d-nav" aria-label="상세 목차"><a href="#p2-ov">Overview</a><a href="#p2-role">My Role</a><a href="#p2-pr">Process</a><a href="#p2-rs">Results</a><a href="#p2-kl">Key Learnings</a><a href="#p2-gl">Gallery</a></nav>
+  <div class="d-body">
+    <div class="d-sec" id="p2-ov"><h3>Project Overview</h3>
+      <p>2026년 제1차 대전·세종 글로벌 진출 전략 프로그램에 참여한 32개 중소기업과 1:1로 바이어 발굴 상담을 했습니다. 기업마다 제품과 목표 시장이 달라, 획일적인 검색 대신 거래 이력과 유통 구조까지 탐색 범위를 넓혔습니다.</p>
+    </div>
+    <div class="d-sec" id="p2-role"><h3>My Role</h3>
+      <ul class="roles"><li>32개 기업 직접 상담</li><li>제품 · 목표 시장 분석</li><li>B/L 거래이력 분석</li><li>HS Code 기반 시장 조사</li><li>경쟁사 수출처 조사</li><li>유통채널 탐색</li><li>Apollo.io · RocketReach 활용</li><li>Excel 바이어 DB 작성</li></ul>
+    </div>
+    <div class="d-sec" id="p2-pr"><h3>Process</h3>
+      <ol class="steps">
+        <li><div><b>기업 상담</b><span>제품의 특징과 희망 시장, 기존 거래 경험을 확인했습니다.</span></div></li>
+        <li><div><b>HS Code로 시장 좁히기</b><span>품목의 HS Code를 기준으로 수입 수요가 있는 국가와 시장을 조사했습니다.</span></div></li>
+        <li><div><b>B/L 거래이력과 경쟁사 수출처 분석</b><span>비슷한 제품을 실제로 수입한 기업과 경쟁사의 수출처를 찾아 후보 바이어를 추렸습니다.</span></div></li>
+        <li><div><b>유통채널 탐색</b><span>산업마다 다른 유통 구조를 확인해 접근할 채널을 정했습니다.</span></div></li>
+        <li><div><b>담당자 정보 확보와 DB 제공</b><span>Apollo.io와 RocketReach로 담당자를 찾고, 후속 영업에 바로 활용할 수 있도록 기업별 Excel 바이어 DB로 정리해 제공했습니다.</span></div></li>
+      </ol>
+    </div>
+    <div class="d-sec" id="p2-rs"><h3>Results</h3>
+      <div class="kpis">
+        <div class="kpi"><strong class="num">32개사</strong><span>1:1 바이어 발굴 상담</span></div>
+        <div class="kpi"><strong class="num">1,560개사</strong><span>잠재 해외 바이어 발굴</span></div>
+        <div class="kpi"><strong class="num">311명</strong><span>바이어 담당자 정보 확보</span></div>
+      </div>
+    </div>
+    <div class="d-sec" id="p2-kl"><h3>Key Learnings</h3>
+      <div class="learn"><p>기업마다 제품과 목표 시장이 다르기 때문에, 산업과 유통의 특성에 맞춘 접근이 중요하다는 것을 배웠습니다. 이 과정에서 기업마다 다른 제품의 강점을 해외 고객의 수요와 연결하는 방법을 익혔습니다.</p></div>
+    </div>
+    <div class="d-sec" id="p2-gl"><h3>Gallery</h3>
+      <div class="gallery">
+        <button data-zoom="img/export-center.jpg" data-cap="2026년 제1차 대전·세종 글로벌 진출 전략 프로그램 운영 현장"><img src="img/export-center.jpg" alt=""><span>프로그램 운영 현장</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="detail" id="project-03" aria-labelledby="p3-t">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <div class="d-hero">
+    <div class="eyebrow">PROJECT 03 · Global Trade Exhibitions</div>
+    <h2 id="p3-t">광저우 · 하노이 · <em>싱가포르</em> 전시회 현장</h2>
+    <p>세 나라의 전시회에서 서로 다른 산업의 제품을 해외 바이어에게 직접 설명하고 상담했습니다.</p>
+  </div>
+  <nav class="d-nav" aria-label="상세 목차"><a href="#p3-ov">Overview</a><a href="#p3-role">My Role</a><a href="#p3-pr">Process</a><a href="#p3-rs">Results</a><a href="#p3-kl">Key Learnings</a><a href="#p3-gl">Gallery</a></nav>
+  <div class="d-body">
+    <div class="d-sec" id="p3-ov"><h3>Project Overview</h3>
+      <p>주방용품, 의료기기, 친환경 행사 가구 렌털까지 산업이 모두 달랐습니다. 전시회마다 제품을 먼저 공부하고, 현장에서는 바이어의 질문에 맞춰 설명 방식을 바꿨습니다.</p>
+    </div>
+    <div class="d-sec" id="p3-role"><h3>My Role</h3>
+      <ul class="roles"><li>영어 바이어 상담</li><li>제품 설명 · 기술 질문 응대</li><li>판매 방식 제안</li><li>상담일지 · 후속 영업 자료 정리</li><li>홍보 콘텐츠 제작</li><li>팀 리더 (SWITCH 기업3팀)</li></ul>
+    </div>
+    <div class="d-sec" id="p3-pr"><h3>Process</h3>
+      <div class="expo">
+        <button class="thumb" data-zoom="img/canton.jpg" data-cap="Canton Fair · 바이어 상담" aria-label="Canton Fair 사진 크게 보기"><img src="img/canton.jpg" alt="" style="object-position:25% 50%"></button>
+        <div><h4>Canton Fair<small>GUANGZHOU, CHINA · 2025</small></h4>
+          <ul><li>주방용품 기업의 해외 판매와 홍보</li><li>낱개보다 세트로 판매하는 방식을 제안</li><li>제품 사용 영상과 전자 카탈로그로 설명</li><li>바이어 상담 21건, 준비 물량 현장 완판</li></ul></div>
+      </div>
+      <div class="expo">
+        <button class="thumb" data-zoom="img/kmed.jpg" data-cap="K Med Expo · 의료기기 설명" aria-label="K Med Expo 사진 크게 보기"><img src="img/kmed.jpg" alt="" style="object-position:55% 60%"></button>
+        <div><h4>K Med Expo &amp; Hanoi Int'l Meditech Show<small>HANOI, VIETNAM · 2025</small></h4>
+          <ul><li>내시경 소독기 등 의료기기 관련 제품 설명</li><li>기술적인 작동 원리를 미리 학습</li><li>전문 영어 표현을 준비해 기술 질문 응대 지원</li><li>바이어 상담 20건 이상 참여</li></ul></div>
+      </div>
+      <div class="expo">
+        <button class="thumb" data-zoom="img/switch-booth.jpg" data-cap="SWITCH 2025 · K-STARTUP 통합관 부스" aria-label="SWITCH 2025 사진 크게 보기"><img src="img/switch-booth.jpg" alt="" style="object-position:50% 35%"></button>
+        <div><h4>SWITCH 2025<small>SINGAPORE · 2025.10.29 – 10.31</small></h4>
+          <ul><li>친환경 행사 가구 렌털 · AI 융합 서비스 해외 홍보</li><li>박람회 전 사전 Zoom 미팅으로 기업 분석 (2025.10.22)</li><li>현지 바이어 영어 상담, 수출상담일지 작성, 부스 운영</li><li>기업3팀 팀장으로 K-STARTUP 10개 기업 카드뉴스 제작</li><li>영문 홍보 콘텐츠 · 인터뷰 제작</li></ul></div>
+      </div>
+    </div>
+    <div class="d-sec" id="p3-rs"><h3>Results</h3>
+      <div class="kpis">
+        <div class="kpi"><strong>21건</strong><span>Canton Fair 바이어 상담 · 현장 완판</span></div>
+        <div class="kpi"><strong>20건+</strong><span>K Med Expo 바이어 상담</span></div>
+        <div class="kpi"><strong>10개사</strong><span>SWITCH 카드뉴스 제작 (기업3팀)</span></div>
+        <div class="kpi"><strong>우수 서포터즈</strong><span>SWITCH 2025 · 창업진흥원장상</span></div>
+      </div>
+    </div>
+    <div class="d-sec" id="p3-kl"><h3>Key Learnings</h3>
+      <div class="learn">
+        <p>현지 지사장님은 싱가포르의 환경 규제와 지속가능성에 대한 관심이 커지면서 가구 렌털 사업의 의미도 커지고 있다고 설명하셨습니다. 그러나 그 기업은 친환경이라는 가치에만 머물지 않았습니다. AI 기업과 협업해 렌털 가구에 카메라를 결합하고, 고객사가 마케팅 성과를 확인할 수 있는 KPI 데이터를 제공하며 차별화하고 있었습니다.</p>
+        <p>보편화되는 가치를 따르는 데서 끝나지 않고, 고객에게 새로운 효용을 더해야 사업이 계속 성장할 수 있다는 점을 배웠습니다.</p>
+      </div>
+    </div>
+    <div class="d-sec" id="p3-gl"><h3>Gallery</h3>
+      <div class="gallery">
+        <button data-zoom="img/switch-booth.jpg" data-cap="SWITCH 2025 부스"><img src="img/switch-booth.jpg" alt=""><span>SWITCH 2025 부스</span></button>
+        <button data-zoom="img/canton.jpg" data-cap="Canton Fair 바이어 상담"><img src="img/canton.jpg" alt=""><span>Canton Fair 상담</span></button>
+        <button data-zoom="img/kmed.jpg" data-cap="K Med Expo 제품 설명"><img src="img/kmed.jpg" alt=""><span>K Med Expo 제품 설명</span></button>
+        <button data-zoom="img/switch-card1.jpg" data-cap="직접 제작한 SWITCH 서포터즈 후기 카드뉴스"><img src="img/switch-card1.jpg" alt=""><span>후기 카드뉴스 · 표지</span></button>
+        <button data-zoom="img/switch-card2.jpg" data-cap="SWITCH와 K-STARTUP 통합관 소개"><img src="img/switch-card2.jpg" alt=""><span>SWITCH 소개</span></button>
+        <button data-zoom="img/switch-card3.jpg" data-cap="담당 기업 분석과 사전 미팅"><img src="img/switch-card3.jpg" alt=""><span>담당 기업 분석</span></button>
+        <button data-zoom="img/switch-card5.jpg" data-cap="기업3팀 팀장으로 카드뉴스 제작"><img src="img/switch-card5.jpg" alt=""><span>서포터즈 활동</span></button>
+        <button data-zoom="img/switch-card6.jpg" data-cap="느낀 점과 현장 팁"><img src="img/switch-card6.jpg" alt=""><span>느낀 점</span></button>
+        <button data-zoom="img/switch-award.jpg" data-cap="SWITCH 2025 우수 대학생 서포터즈 상장"><img src="img/switch-award.jpg" alt=""><span>우수 서포터즈 상장</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="detail" id="project-04" aria-labelledby="p4-t">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <div class="d-hero">
+    <div class="eyebrow">PROJECT 04 · B2B Marketing / Global Buyer Development</div>
+    <h2 id="p4-t">KOTRA AICE 1기 · <em>DRY-Q</em></h2>
+    <p>땀 흡수 패드 DRY-Q의 해외시장 진출을 위한 B2B 마케팅 프로젝트입니다. 6인 팀으로 참여했습니다.</p>
+  </div>
+  <nav class="d-nav" aria-label="상세 목차"><a href="#p4-ov">Overview</a><a href="#p4-role">My Role</a><a href="#p4-pr">Process</a><a href="#p4-rs">Results</a><a href="#p4-kl">Key Learnings</a><a href="#p4-gl">Gallery</a></nav>
+  <div class="d-body">
+    <div class="d-sec" id="p4-ov"><h3>Project Overview</h3>
+      <p>모자와 셔츠 깃에 붙이는 땀 흡수 패드 DRY-Q를 해외 B2B 바이어에게 알리기 위해 목표 시장을 조사하고, 잠재 바이어를 발굴해 영문 제안으로 접촉했습니다. 팀이 작성한 디지털 마케팅 계획안으로 MVP에 선정되었습니다.</p>
+    </div>
+    <div class="d-sec" id="p4-role"><h3>My Role</h3>
+      <ul class="roles"><li>해외 목표 시장 조사</li><li>잠재 바이어 발굴</li><li>영문 제안 · 연락</li><li>디지털 마케팅 계획안 작성</li></ul>
+    </div>
+    <div class="d-sec" id="p4-pr"><h3>Process</h3>
+      <ol class="steps">
+        <li><div><b>목표 시장 조사</b><span>제품의 사용 환경과 수요가 맞는 해외 시장을 조사했습니다.</span></div></li>
+        <li><div><b>잠재 바이어 발굴과 영문 제안</b><span>후보 바이어를 찾아 영문 제안서와 메시지로 접촉했습니다.</span></div></li>
+        <li><div><b>디지털 마케팅 계획 수립</b><span>국가별 광고 콘텐츠에 예산을 집중해 리드를 확보하고 바이어 문의로 연결하는 SNS 광고와 랜딩페이지를 기획했습니다.</span></div></li>
+      </ol>
+    </div>
+    <div class="d-sec" id="p4-rs"><h3>Results</h3>
+      <div class="kpis">
+        <div class="kpi"><strong>약 70개사</strong><span>해외 바이어 발굴 · 접촉</span></div>
+        <div class="kpi"><strong>1건</strong><span>샘플 요청 확보</span></div>
+        <div class="kpi"><strong>MVP</strong><span>KOTRA AICE 1기 선정</span></div>
+      </div>
+    </div>
+    <div class="d-sec" id="p4-kl"><h3>Key Learnings</h3>
+      <div class="learn"><p>작은 소모품일수록 기능만 나열해서는 바이어의 관심을 얻기 어렵다는 것을 배웠습니다. 제품이 쓰이는 장면과 고객이 겪는 불편을 함께 보여 줄 때 제안이 대화로 이어졌습니다.</p></div>
+    </div>
+    <div class="d-sec" id="p4-gl"><h3>Gallery</h3>
+      <div class="gallery">
+        <button data-zoom="img/dryq-cover.jpg" data-cap="DRY-Q 디지털 마케팅 계획안 표지"><img src="img/dryq-cover.jpg" alt=""><span>디지털 마케팅 계획안</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="detail" id="project-05" aria-labelledby="p5-t">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <div class="d-hero">
+    <div class="eyebrow">PROJECT 05 · Business Strategy / Marketing</div>
+    <h2 id="p5-t">청원생명쇼핑몰 <em>경쟁력 강화 전략</em> 제안</h2>
+    <p>충북 지역 농특산물 쇼핑몰의 경쟁력을 높이기 위한 전략을 수립한 캡스톤디자인 프로젝트입니다. 실행 성과가 아닌 전략 제안 프로젝트입니다.</p>
+  </div>
+  <nav class="d-nav" aria-label="상세 목차"><a href="#p5-ov">Overview</a><a href="#p5-role">My Role</a><a href="#p5-pr">Process</a><a href="#p5-rs">Results</a><a href="#p5-kl">Key Learnings</a><a href="#p5-gl">Gallery</a></nav>
+  <div class="d-body">
+    <div class="d-sec" id="p5-ov"><h3>Project Overview</h3>
+      <p>청원생명쇼핑몰은 청주시가 인증 · 관리하는 로컬푸드 쇼핑몰로, 공공 브랜드의 신뢰도는 높지만 온라인 인지도와 마케팅 역량이 낮았습니다. 중간 유통 마진으로 생산자 수취가는 낮고 소비자 가격 부담은 큰 구조에서, 쇼핑몰의 경쟁력을 높일 방안을 찾았습니다.</p>
+    </div>
+    <div class="d-sec" id="p5-role"><h3>My Role</h3>
+      <ul class="roles"><li>운영기업 대표 인터뷰</li><li>소비자 53명 설문조사</li><li>PEST · SWOT · STP · 4P 분석</li><li>디지털 마케팅 개선안 제시</li><li>공동물류 · 운영 효율화 아이디어 제안</li></ul>
+    </div>
+    <div class="d-sec" id="p5-pr"><h3>Process</h3>
+      <ol class="steps">
+        <li><div><b>현황 분석</b><span>3C와 SWOT으로 강점(인증 받은 공공 브랜드)과 약점(D2C 역량, 데이터 축적 부족)을 정리했습니다.</span></div></li>
+        <li><div><b>현장과 고객의 목소리</b><span>운영기업 대표를 인터뷰하고 소비자 53명을 대상으로 설문조사를 진행했습니다.</span></div></li>
+        <li><div><b>STP와 4P 재설계</b><span>30–60대 지역 주부에 집중된 타깃을 MZ세대와 1인 가구로 넓히는 방향과, 제품 · 가격 · 유통 · 홍보별 문제점을 도출했습니다.</span></div></li>
+        <li><div><b>개선 방향 제안</b><span>신뢰와 상생 기반의 프리미엄 브랜드 구축, 세분화된 제품 라인과 정기구독, 스마트팜 연계 유통, 참여형 디지털 홍보를 제안했습니다.</span></div></li>
+      </ol>
+    </div>
+    <div class="d-sec" id="p5-rs"><h3>Results</h3>
+      <div class="kpis">
+        <div class="kpi"><strong>우수상</strong><span>2025 경영대학 캡스톤디자인 경진대회 (2025.11.27)</span></div>
+        <div class="kpi"><strong class="num">53명</strong><span>소비자 설문 응답</span></div>
+      </div>
+    </div>
+    <div class="d-sec" id="p5-kl"><h3>Key Learnings</h3>
+      <div class="learn"><p>좋은 제품과 신뢰받는 브랜드가 있어도, 그 가치가 고객에게 닿는 경로가 없으면 경쟁력이 되지 않는다는 것을 배웠습니다. 이미 가진 강점을 새로운 고객의 언어로 다시 설명하는 일이 전략의 출발점이었습니다.</p></div>
+    </div>
+    <div class="d-sec" id="p5-gl"><h3>Gallery</h3>
+      <div class="gallery">
+        <button data-zoom="img/capstone-poster.jpg" data-cap="청원생명쇼핑몰 경쟁력 강화 방안 포스터 (GROWTH팀)"><img src="img/capstone-poster.jpg" alt=""><span>프로젝트 포스터</span></button>
+        <button data-zoom="img/capstone-award.jpg" data-cap="2025 경영대학 캡스톤디자인 경진대회 우수상"><img src="img/capstone-award.jpg" alt=""><span>우수상 상장</span></button>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="detail" id="project-06" aria-labelledby="p6-t">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <div class="d-hero">
+    <div class="eyebrow">PROJECT 06 · AI / Marketing / Process Design</div>
+    <h2 id="p6-t">AI 활용 <em>수출 마케팅 콘텐츠</em> 기획</h2>
+    <p>ChatGPT와 Claude를 활용해 수출기업의 마케팅 콘텐츠와 수출지원 안내 콘텐츠를 기획했습니다.</p>
+  </div>
+  <nav class="d-nav" aria-label="상세 목차"><a href="#p6-ov">Overview</a><a href="#p6-role">My Role</a><a href="#p6-pr">Process</a><a href="#p6-kl">Key Learnings</a></nav>
+  <div class="d-body">
+    <div class="d-sec" id="p6-ov"><h3>Project Overview</h3>
+      <p>기업마다 다른 제품 정보와 목표 시장을 AI가 이해할 수 있게 정리하고, 이를 바탕으로 마케팅 이미지와 안내 콘텐츠를 만드는 과정을 설계했습니다.</p>
+    </div>
+    <div class="d-sec" id="p6-role"><h3>My Role</h3>
+      <div class="split">
+        <div><h4><small>LEARNED · 교육에서 학습</small>AI 활용 기초</h4><ul class="dots"><li>ChatGPT 프로젝트 기능 활용</li><li>기업별 지식 파일 구성</li><li>질문 기반 프롬프트 설계</li></ul></div>
+        <div><h4><small>APPLIED · 실제 수행 업무</small>수출지원 콘텐츠 기획</h4><ul class="dots"><li>수출기업 마케팅 이미지 제작 프로세스 설계</li><li>Claude 활용 수출지원 콘텐츠 기획</li><li>수출바우처 안내 콘텐츠 및 서비스 추천 유형 기획</li></ul></div>
+      </div>
+    </div>
+    <div class="d-sec" id="p6-pr"><h3>Process</h3>
+      <ol class="steps">
+        <li><div><b>기업 정보 정리</b><span>기업별 제품, 강점, 목표 시장을 지식 파일로 구성했습니다.</span></div></li>
+        <li><div><b>질문으로 설계한 프롬프트</b><span>AI가 필요한 정보를 먼저 묻고 답을 만들도록 질문 기반 프롬프트를 설계했습니다.</span></div></li>
+        <li><div><b>콘텐츠 기획</b><span>마케팅 이미지 제작 과정과 수출바우처 안내 콘텐츠, 기업 유형별 서비스 추천 방식을 기획했습니다.</span></div></li>
+      </ol>
+    </div>
+    <div class="d-sec" id="p6-kl"><h3>Key Learnings</h3>
+      <div class="learn"><p>AI는 결과물을 대신 만들어 주는 도구라기보다, 기업마다 다른 정보를 빠르게 정리해 더 맞춤화된 지원을 가능하게 하는 도구라는 것을 배웠습니다. 좋은 결과는 좋은 질문과 잘 정리된 정보에서 나왔습니다.</p></div>
+    </div>
+  </div>
+</dialog>
+
+<dialog class="lightbox" id="lightbox" aria-label="이미지 크게 보기">
+  <button class="d-close" data-close aria-label="닫기">×</button>
+  <img id="lb-img" src="" alt="">
+  <p id="lb-cap"></p>
+</dialog>
+
+<script>
+(function(){
+  var burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',function(){var o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o);burger.setAttribute('aria-label',o?'메뉴 닫기':'메뉴 열기');});
+  menu.addEventListener('click',function(e){if(e.target.tagName==='A'){menu.classList.remove('open');burger.setAttribute('aria-expanded','false');}});
+
+  var links=[].slice.call(menu.querySelectorAll('a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'));});
+  function mark(){var y=window.scrollY+140,cur=0;secs.forEach(function(s,i){if(s&&s.getBoundingClientRect().top+window.scrollY<=y)cur=i;});links.forEach(function(a,i){a.classList.toggle('on',i===cur);});}
+  window.addEventListener('scroll',mark,{passive:true});mark();
+
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!reduce){
+    var nums=[].slice.call(document.querySelectorAll('[data-count]'));var start=null;
+    function step(t){if(!start)start=t;var p=Math.min((t-start)/1600,1),e=1-Math.pow(1-p,3);
+      nums.forEach(function(n){n.textContent=Math.round(+n.dataset.count*e).toLocaleString('en-US');});
+      if(p<1)requestAnimationFrame(step);}
+    setTimeout(function(){requestAnimationFrame(step);},700);
+  }
+
+  var opened=null;
+  function openDlg(id){var d=document.getElementById(id);if(!d||!d.showModal)return;if(opened&&opened!==d)opened.close();if(!d.open)d.showModal();opened=d;d.scrollTop=0;}
+  document.querySelectorAll('[data-open]').forEach(function(b){b.addEventListener('click',function(){var id=b.dataset.open;try{history.replaceState(null,'','#'+id);}catch(e){}openDlg(id);});});
+  document.querySelectorAll('dialog.detail').forEach(function(d){
+    d.addEventListener('close',function(){if(location.hash==='#'+d.id){try{history.replaceState(null,'','#projects');}catch(e){}}opened=null;});
+    d.addEventListener('click',function(e){if(e.target===d)d.close();});
+    d.querySelectorAll('.d-nav a').forEach(function(a){a.addEventListener('click',function(e){e.preventDefault();var t=d.querySelector(a.getAttribute('href'));if(t)t.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});});});
+  });
+  document.querySelectorAll('[data-close]').forEach(function(b){b.addEventListener('click',function(){b.closest('dialog').close();});});
+  function route(){var h=location.hash.slice(1);if(/^project-0[1-6]$/.test(h))openDlg(h);}
+  window.addEventListener('hashchange',route);route();
+
+  var lb=document.getElementById('lightbox'),li=document.getElementById('lb-img'),lc=document.getElementById('lb-cap');
+  document.querySelectorAll('[data-zoom]').forEach(function(b){b.addEventListener('click',function(){li.src=b.dataset.zoom;li.alt=b.dataset.cap||'';lc.textContent=b.dataset.cap||'';lb.showModal();});});
+  lb.addEventListener('click',function(e){if(e.target===lb||e.target===li)lb.close();});
+
+  var cb=document.getElementById('copyMail');
+  cb.addEventListener('click',function(){var done=function(){cb.textContent='복사했습니다';setTimeout(function(){cb.textContent='이메일 주소 복사';},2000);};
+    try{navigator.clipboard.writeText('lovehjcheon@naver.com').then(done,function(){cb.textContent='lovehjcheon@naver.com';});}catch(e){cb.textContent='lovehjcheon@naver.com';}});
+})();
+</script>
+</body>
+</html>
